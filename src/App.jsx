@@ -2,7 +2,6 @@ import { useState, useEffect, useRef, useCallback } from 'react'
 import './App.css'
 import { Movies } from './components/Movies.jsx'
 import { useMovies } from './hooks/useMovies.js'
-
 import debounce from 'just-debounce-it'
 
 function useSearch () {
@@ -42,7 +41,6 @@ function useSearch () {
 function App() {
 
   const [sort, setSort] = useState(false)
-
   const { search, setSearch, error } = useSearch()
   const { movies, loading,  getMovies } = useMovies({search, sort})
 
@@ -62,6 +60,7 @@ function App() {
   }
 
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedGetMovies = useCallback(
     debounce(search => {
     getMovies({search})
